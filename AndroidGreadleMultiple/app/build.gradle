@@ -11,10 +11,45 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    defaultConfig {
+        applicationId "com.clghks.androidgreadlemultiple"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        /*
+         *http://developer.android.com/intl/ko/tools/building/manifest-merge.html
+         * */
+        manifestPlaceholders = [ testLabel:"true" ]
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    /**
+     *  패키지 이름으로 분류하여 Multiple APK 생성
+     *  버전코드에 따라 분류
+     *  target SDK 도 가능
+     */
+    productFlavors {
+        demo {
+            versionCode 2
+            versionName "2.demo"
+            targetSdkVersion 14
+            applicationId "com.buildsystemexample.app.demo"
+            versionName "1.0-demo"
+            manifestPlaceholders = [ testLabel:"true" ]
+        }
+        full {
+            versionCode 3
+            versionName "3.demo"
+            targetSdkVersion 15
+            applicationId "com.buildsystemexample.app.full"
+            versionName "1.0-full"
+            manifestPlaceholders = [ testLabel:"false" ]
         }
     }
 }

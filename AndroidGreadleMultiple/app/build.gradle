@@ -17,6 +17,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    /**
+     *  패키지 이름으로 분류하여 Multiple APK 생성
+     */
+    productFlavors {
+        demo {
+            applicationId "com.buildsystemexample.app.demo"
+            versionName "1.0-demo"
+        }
+        full {
+            applicationId "com.buildsystemexample.app.full"
+            versionName "1.0-full"
+        }
+    }
 }
 
 dependencies {

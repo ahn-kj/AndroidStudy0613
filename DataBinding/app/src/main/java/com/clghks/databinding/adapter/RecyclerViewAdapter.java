@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.clghks.databinding.R;
 import com.clghks.databinding.data.User;
-import com.clghks.databinding.databinding.ListUserBinding;
+import com.clghks.databinding.databinding.UserItem;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if(inflate == null){
             inflate = LayoutInflater.from(parent.getContext());
         }
-        ListUserBinding binding = DataBindingUtil.inflate(inflate, R.layout.list_user, parent, false);
+        UserItem binding = DataBindingUtil.inflate(inflate, R.layout.list_user, parent, false);
         return new ViewHolder(binding);
     }
 
@@ -42,9 +42,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ListUserBinding userBinding;
+        private UserItem userBinding;
 
-        public ViewHolder(ListUserBinding userBinding) {
+        public ViewHolder(UserItem userBinding) {
             super(userBinding.getRoot());
             this.userBinding = userBinding;
         }

@@ -16,7 +16,7 @@ public class UserManager {
     static {
         userList = new ArrayList<User>();
         for (int i = 0; i<20; i++){
-            userList.add(new User("test" + i, "test" + i));
+            userList.add(new User("test" + i, "test" + i, i%2==0));
         }
     }
 }

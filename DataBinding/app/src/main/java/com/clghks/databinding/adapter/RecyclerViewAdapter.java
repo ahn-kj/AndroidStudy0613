@@ -1,39 +1,39 @@
 package com.clghks.databinding.adapter;
 
 import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
+import com.clghks.databinding.BR;
 import com.clghks.databinding.R;
 import com.clghks.databinding.data.User;
-import com.clghks.databinding.databinding.UserItem;
 
 import java.util.List;
 
 /**
  * Created by chihwan on 15. 11. 9..
  */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.BindingHolder>{
     private List<User> userList;
-    private LayoutInflater inflate;
 
     public RecyclerViewAdapter(List<User> userList){
         this.userList = userList;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(inflate == null){
-            inflate = LayoutInflater.from(parent.getContext());
-        }
-        UserItem binding = DataBindingUtil.inflate(inflate, R.layout.list_user, parent, false);
-        return new ViewHolder(binding);
+    public BindingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_user, parent, false);
+        BindingHolder holder = new BindingHolder(view);
+        return holder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.userBinding.setUser(userList.get(position));
+    public void onBindViewHolder(BindingHolder holder, int position) {
+        holder.getBinding().setVariable(BR.user, userList.get(position));
+        holder.getBinding().executePendingBindings();
     }
 
     @Override
@@ -41,12 +41,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return userList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        private UserItem userBinding;
+    public class BindingHolder extends RecyclerView.ViewHolder {
+        private ViewDataBinding binding;
 
-        public ViewHolder(UserItem userBinding) {
-            super(userBinding.getRoot());
-            this.userBinding = userBinding;
+        public BindingHolder(View rootView) {
+            super(rootView);
+            binding = DataBindingUtil.bind(rootView);
+        }
+
+        public ViewDataBinding getBinding() {
+            return binding;
         }
     }
 }

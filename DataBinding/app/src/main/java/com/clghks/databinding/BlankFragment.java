@@ -13,13 +13,21 @@ import com.clghks.databinding.databinding.FragmentBlankBinding;
 
 
 public class BlankFragment extends Fragment {
+    private User user;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        user = new User("Test", "User", false);
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         FragmentBlankBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_blank, container, false);
-        User user = new User("Test", "User", false);
         binding.setUser(user);
         return binding.getRoot();
     }
 }
+
